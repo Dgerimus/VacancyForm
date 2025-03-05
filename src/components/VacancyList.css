@@ -1,0 +1,126 @@
+.fon {
+  background-color: #f3f7f8;
+  padding: 20px;
+}
+
+.zag {
+  padding-left: 150px;
+  padding-right: 150px;
+  font-family: "Inter";
+  color: #4c73e3;
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.vacancy-list {
+  padding-right: 150px;
+  padding-left: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.vacancy-card {
+  background: white;
+  padding: 15px;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.vacancy-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.vacancy-date {
+  font-family: "Inter";
+  font-size: 14px;
+  opacity: 60%;
+}
+.edit-button {
+  align-self: flex-start;
+  margin-top: 10px;
+  background: #ffffff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.edit-button-icon {
+  width: 24px;
+  height: 24px;
+}
+.vacancy-title {
+  font-family: "Inter";
+  color: #4f4f55;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.vacancy-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.vacancy-address {
+  color: #4f4f55;
+  height: 20px;
+  font-family: "PF Din Text Cond Pro";
+  font-weight: 400;
+
+  font-size: 16px;
+}
+.subtract-icon {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+}
+
+.vacancy-footer-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.vacancy-salary {
+  font-family: "PF Din Text Cond Pro";
+  font-weight: 700;
+  color: #4c73e3;
+  font-size: 20px;
+}
+.vacancy-salary-hand {
+  color: #4f4f55;
+  font-family: "PF Din Text Cond Pro";
+  font-weight: 400;
+  font-size: 14px;
+}
+.vacancy-experience {
+  font-family: "PF Din Text Cond Pro";
+  font-weight: 400;
+  color: #4f4f55;
+  font-size: 14px;
+}
+.experience-gate {
+  font-family: "PF Din Text Cond Pro";
+  font-weight: 700;
+  color: #4c73e3;
+  font-size: 16px;
+}
+
+.vector-icon {
+  width: 19px;
+  height: 19px;
+  vertical-align: middle;
+}
+.vacancy-metro {
+  color: #4f4f55;
+  font-family: "PF Din Text Cond Pro";
+  font-weight: 400;
+  font-size: 14px;
+  opacity: 80%;
+}

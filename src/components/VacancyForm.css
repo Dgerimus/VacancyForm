@@ -1,0 +1,151 @@
+input {
+  border-radius: 16px;
+  padding: 10px;
+  border: 1px solid #dee4f0;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+label,
+input,
+h2 {
+  font-family: "Inter", sans-serif;
+  font-weight: 300;
+}
+input[type="text"],
+input[type="number"],
+input[type="date"] {
+  width: 275px;
+}
+
+.salary-range input {
+  width: 100px;
+}
+
+input[type="text"].long-input,
+input[type="date"].long-input {
+  width: 420px;
+}
+
+.req {
+  color: #bf0003;
+}
+
+.vacancy-form {
+  padding-left: 150px;
+  padding-right: 150px;
+}
+
+.vacancy-form-body {
+  padding-top: 20px;
+  background-color: white;
+  padding: 20px;
+
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.company-row {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: row;
+  gap: 40px;
+}
+
+.date-row {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: row;
+  gap: 40px;
+}
+
+.radio-group-sex {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.salary-options {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.salary-range {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+}
+.salary-range input {
+  width: 100px;
+}
+
+.address-inputs-row {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 40px;
+}
+
+.address-input-group {
+}
+
+.address-input-group label {
+  display: flex;
+}
+
+.address-input-group input {
+}
+
+.exp-input-row {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.exp-input-group {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.type-iput-colum {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.type-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+/* Стили для кнопок */
+
+.form-actions button {
+  width: 250px;
+  height: 50px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.form-actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+.form-actions button[type="button"] {
+  background-color: transparent;
+  color: #007bff;
+  border: 1px solid #007bff;
+}
+.form-actions button:hover {
+  opacity: 0.7;
+}

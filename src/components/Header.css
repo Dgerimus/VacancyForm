@@ -1,0 +1,60 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 150px;
+  background-color: #4c73e3;
+  height: 71px;
+}
+
+/* Стили для иконки */
+.circle-icon {
+  height: 40px;
+  width: 40px;
+}
+
+/* Группа кнопок */
+.button-group {
+  display: flex;
+}
+
+/* Основные стили кнопки */
+.header-button {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  height: 71px;
+  padding: 0 15px;
+  border: none;
+  background-color: #4c73e3;
+  color: white;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.3s, color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-button span {
+  position: relative;
+  display: inline-block;
+}
+
+.header-button:hover span::before {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background-color: #f2c94c;
+}
+
+.header-button.active {
+  background-color: #88a7ff;
+}
+
+.header-button.active span::before {
+  display: none;
+}
