@@ -7,18 +7,18 @@ const mockVacancies = [
   {
     id: 1,
     title: "Frontend Developer",
-    date: "2025-03-03",
+    operationDate: "2025-03-03",
     address: "Москва, ул. Ленина 1",
-    salary: "100,000",
+    salaryFrom: "100,000",
     experience: "от 1 до 3 лет",
     metro: "Киевская",
   },
   {
     id: 2,
     title: "Backend Developer",
-    date: "2025-02-28",
+    operationDate: "2025-02-28",
     address: "Санкт-Петербург, ул. Пушкина 10",
-    salary: "120,000",
+    salaryFrom: "120,000",
     experience: "более 3 лет",
     metro: "Невский проспект",
   },
@@ -27,6 +27,7 @@ const mockVacancies = [
 const App = () => {
   const [activeButton, setActiveButton] = useState("list");
   const [vacancies, setVacancies] = useState(mockVacancies);
+  const [selectedVacancy, setSelectedVacancy] = useState(null);
 
   const handleButtonClick = (buttonType) => {
     setActiveButton(buttonType);
@@ -40,22 +41,50 @@ const App = () => {
     setActiveButton("list"); // После добавления вакансии возвращаемся в список
   };
 
+  const handleEdit = (vacancy) => {
+    setSelectedVacancy(vacancy);
+    setActiveButton("form"); // Переходим в форму для редактирования
+  };
+
+  const handleDelete = (id) => {
+    setVacancies((prevVacancies) =>
+      prevVacancies.filter((vacancy) => vacancy.id !== id)
+    );
+  };
+
+  const handleUpdate = (updatedVacancy) => {
+    setVacancies((prevVacancies) =>
+      prevVacancies.map((vacancy) =>
+        vacancy.id === updatedVacancy.id ? updatedVacancy : vacancy
+      )
+    );
+    setSelectedVacancy(null);
+    setActiveButton("list");
+  };
+
   return (
     <div>
       <Header onButtonClick={handleButtonClick} />
       <div>
         {activeButton === "list" ? (
-          <VacancyList vacancies={vacancies} />
+          <VacancyList
+            vacancies={vacancies}
+            onEdit={handleEdit}
+            onDelete={handleDelete}
+          />
         ) : (
           <VacancyForm
             onSubmit={handleSubmit}
-            initialValues={{
-              title: "",
-              address: "",
-              salary: "",
-              experience: "",
-              metro: "",
-            }}
+            onUpdate={handleUpdate}
+            initialValues={
+              selectedVacancy || {
+                title: "",
+                address: "",
+                salary: "",
+                experience: "",
+                metro: "",
+              }
+            }
           />
         )}
       </div>

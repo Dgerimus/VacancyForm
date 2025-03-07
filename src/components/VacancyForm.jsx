@@ -1,332 +1,417 @@
 import React, { useState } from "react";
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import * as Yup from "yup";
 import "./VacancyForm.css";
-import Radiobutton from "./icons/Radiobutton.png";
-import RadiobuttonHover from "./icons/RadiobuttonHover.png";
-import Radiobutton0 from "./icons/Radiobutton0.png";
+import Calendar from "./icons/Calendar.png";
+import Swich from "./icons/Swich.png";
+import SwichOpen from "./icons/SwichOpen.png";
 
-const VacancyForm = ({ onSubmit, initialValues }) => {
-  const [formData, setFormData] = useState(
-    initialValues || {
-      title: "",
-      department: "",
-      operationDate: "",
-      plannedDate: "",
-      gender: "",
+// Валидация формы
+const validationSchema = Yup.object({
+  title: Yup.string().required("Укажите наименование"),
+  department: Yup.string().required("Укажите отдел"),
+  operationDate: Yup.date().required("Выберите дату открытия"),
+  plannedDate: Yup.date().required("Выберите дату закрытия"),
+  gender: Yup.string().required("Выберите пол"),
+  salaryFrom: Yup.number().required("Укажите уровень зарплаты").min(0),
+  region: Yup.string().required("Выберите регион"),
+  address: Yup.string().required(
+    "Введите полный адрес. Например, Походный проезд, 3с1"
+  ),
+  experience: Yup.string().required("Укажите опыт работы"),
+  workSchedule: Yup.string().required("Укажите график работы"),
+  employmentType: Yup.string().required("Выберите тип занятости"),
+  netSalary: Yup.string().required("Укажите форму зарплаты "),
+});
 
-      address: "",
-      salaryFrom: "",
-      salaryTo: "",
-      salary: "",
-      experience: "",
-      metro: "",
-      workSchedule: "",
-      employmentType: "",
+const VacancyForm = ({ onSubmit, vacancies }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [arrowIcon, setArrowIcon] = useState(Swich); // Изначально стрелка закрыта
+
+  const handleToggle = () => {
+    setIsOpen((prevState) => !prevState);
+    setArrowIcon((prevState) => (prevState === Swich ? SwichOpen : Swich)); // Меняем иконку стрелки
+  };
+
+  const handleSelectChange = (e, setFieldValue) => {
+    setFieldValue(e.target.name, e.target.value);
+    setArrowIcon(Swich);
+    setIsOpen(false);
+  };
+
+  const handleBlur = (e) => {
+    if (!e.target.value) {
+      setArrowIcon(Swich); // Возвращаем стрелку в исходное положение
     }
-  );
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onSubmit(formData);
-  };
-
-  const handleReset = () => {
-    setFormData({
-      title: "",
-      department: "",
-      operationDate: "",
-      plannedDate: "",
-      gender: "",
-      address: "",
-      salary: "",
-      experience: "",
-      metro: "",
-      workSchedule: "",
-      employmentType: "",
-    });
+    setIsOpen(false); // Закрываем список
   };
 
   return (
     <div className="vacancy-form">
-      <h2>Добавить вакансию</h2>
+      <h2 className="zag1">
+        Форма размещения <u>заявки</u>
+      </h2>
 
-      <div className="vacancy-form-body">
-        <form onSubmit={handleSubmit}>
-          <div className="company-row">
-            <div>
-              <label htmlFor="title">
-                Наименование вакансии<span className="req">*</span>
-              </label>
-              <div>
-                <input
-                  type="text"
-                  id="title"
-                  name="title"
-                  value={formData.title}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-            </div>
+      <Formik
+        initialValues={{
+          title: "",
+          department: "",
+          operationDate: "",
+          plannedDate: "",
+          gender: "",
+          region: "",
+          address: "",
+          salaryFrom: "",
+          salaryTo: "",
+          salary: "",
+          experience: "",
+          metro: "",
+          workSchedule: "",
+          employmentType: "",
+          netSalary: "",
+        }}
+        validationSchema={validationSchema}
+        onSubmit={(values, { resetForm }) => {
+          const newVacancy = {
+            ...values,
+            id: new Date().toISOString(),
+          };
 
-            <div>
-              <label htmlFor="department">
-                Отдел<span className="req">*</span>
-              </label>
-              <div>
-                <input
-                  type="text"
-                  id="department"
-                  name="department"
-                  value={formData.department}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-            </div>
-          </div>
-          <div className="date-row">
-            <div>
-              <label htmlFor="operationDate">
-                Дата открытия<span className="req">*</span>
-              </label>
-              <div>
-                <input
-                  type="date"
-                  id="operationDate"
-                  name="operationDate"
-                  value={formData.operationDate}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-            </div>
+          onSubmit(newVacancy);
 
-            <div>
-              <label htmlFor="plannedDate">
-                Плановая дата закрытия<span className="req">*</span>
-              </label>
-              <div>
-                <input
-                  type="date"
-                  id="plannedDate"
-                  name="plannedDate"
-                  value={formData.plannedDate}
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
-          </div>
-          <div>
-            <label>
-              Пол<span className="req">*</span>
-            </label>
-            <div>
-              <div className="radio-group-sex">
-                <div>
-                  <label>
-                    <input
-                      type="radio"
-                      name="gender"
-                      value="Мужской"
-                      checked={formData.gender === "Мужской"}
-                      onChange={handleChange}
-                      required
-                      className="custom-radio"
-                    />
-                    Мужской
+          resetForm();
+        }}
+      >
+        {({ setFieldValue, resetForm, errors, touched }) => (
+          <Form>
+            <div className="vacancy-form-body">
+              <div className="company-row">
+                <div className="company-group">
+                  <label htmlFor="title">
+                    Наименование вакансии<span className="req">*</span>
                   </label>
+                  <Field
+                    type="text"
+                    id="title"
+                    name="title"
+                    className={`custom-input ${
+                      errors.title && touched.title ? "error" : ""
+                    }`}
+                  />
+                  <ErrorMessage
+                    name="title"
+                    component="div"
+                    className="error"
+                  />
                 </div>
-                <div>
-                  <label>
-                    <input
-                      type="radio"
-                      name="gender"
-                      value="Женский"
-                      checked={formData.gender === "Женский"}
-                      onChange={handleChange}
-                      required
-                      className="custom-radio"
-                    />
-                    Женский
+
+                <div className="company-group">
+                  <label htmlFor="department">
+                    Отдел<span className="req">*</span>
                   </label>
+                  <Field
+                    type="text"
+                    id="department"
+                    name="department"
+                    className={`custom-input ${
+                      errors.department && touched.department ? "error" : ""
+                    }`}
+                  />
+                  <ErrorMessage
+                    name="department"
+                    component="div"
+                    className="error"
+                  />
                 </div>
               </div>
-            </div>
-          </div>
 
-          <div>
-            <label>
-              Зарплата<span className="req">*</span>
-            </label>
-            <div className="salary-options">
-              <label>
-                <input
-                  type="radio"
+              <div className="date-row">
+                <div>
+                  <label htmlFor="operationDate">
+                    Дата открытия<span className="req">*</span>
+                  </label>
+                  <div className="date-input-wrapper">
+                    <Field
+                      type="date"
+                      id="operationDate"
+                      name="operationDate"
+                      className={`custom-date-input custom-input ${
+                        errors.operationDate && touched.operationDate
+                          ? "error"
+                          : ""
+                      }`}
+                    />
+                    <img
+                      src={Calendar}
+                      alt="Календарик"
+                      className="calendar-icon"
+                      onClick={() =>
+                        document.getElementById("operationDate").showPicker()
+                      }
+                    />
+                  </div>
+                  <ErrorMessage
+                    name="operationDate"
+                    component="div"
+                    className="error"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="plannedDate">
+                    Плановая дата закрытия<span className="req">*</span>
+                  </label>
+                  <div className="date-input-wrapper">
+                    <Field
+                      type="date"
+                      id="plannedDate"
+                      name="plannedDate"
+                      className={`custom-date-input custom-input ${
+                        errors.plannedDate && touched.plannedDate ? "error" : ""
+                      }`}
+                    />
+                    <img
+                      src={Calendar}
+                      alt="Календарик"
+                      className="calendar-icon"
+                      onClick={() =>
+                        document.getElementById("plannedDate").showPicker()
+                      }
+                    />
+                  </div>
+                  <ErrorMessage
+                    name="plannedDate"
+                    component="div"
+                    className="error"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label>
+                  Пол<span className="req">*</span>
+                </label>
+                <div className="radio-group-sex">
+                  <Field type="radio" id="male" name="gender" value="Мужской" />
+                  <label htmlFor="male">Мужской</label>
+
+                  <Field
+                    type="radio"
+                    id="female"
+                    name="gender"
+                    value="Женский"
+                  />
+                  <label htmlFor="female">Женский</label>
+                  <ErrorMessage
+                    name="gender"
+                    component="div"
+                    className="error"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label>
+                  Зарплата<span className="req">*</span>
+                </label>
+                <div className="salary-options">
+                  <Field
+                    type="radio"
+                    id="salaryNetHands"
+                    name="netSalary"
+                    value="На руки"
+                  />
+                  <label htmlFor="salaryNetHands">На руки</label>
+
+                  <Field
+                    type="radio"
+                    id="salaryPreTax"
+                    name="netSalary"
+                    value="До вычета налогов"
+                  />
+                  <label htmlFor="salaryPreTax">До вычета налогов</label>
+                </div>
+
+                <ErrorMessage
                   name="netSalary"
-                  value="На руки"
-                  checked={formData.netSalary === "На руки"}
-                  onChange={handleChange}
+                  component="div"
+                  className="error"
                 />
-                На руки
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="netSalary"
-                  value="До вычета налогов"
-                  checked={formData.netSalary === "До вычета налогов"}
-                  onChange={handleChange}
+              </div>
+
+              <div className="salary-range">
+                <Field
+                  type="number"
+                  name="salaryFrom"
+                  placeholder="от"
+                  className={`custom-date-input custom-input ${
+                    errors.salaryFrom && touched.salaryFrom ? "error" : ""
+                  }`}
                 />
-                До вычета налогов
-              </label>
-            </div>
-            <div className="salary-range">
-              <input
-                type="number"
-                name="salaryFrom"
-                placeholder="от"
-                value={formData.salaryFrom}
-                onChange={handleChange}
-                required
-              />
-              <input
-                type="number"
-                name="salaryTo"
-                placeholder="до"
-                value={formData.salaryTo}
-                onChange={handleChange}
-                required
-              />
-            </div>
-          </div>
+                <Field type="number" name="salaryTo" placeholder="до" />
+              </div>
+              <div>
+                <ErrorMessage
+                  name="salaryFrom"
+                  component="div"
+                  className="error "
+                />
+              </div>
 
-          <div className="address-inputs-row">
-            <div className="address-input-group">
-              <label htmlFor="region">
-                Регион<span className="req">*</span>
-              </label>
-              <input
-                type="text"
-                id="region"
-                name="region"
-                value={formData.region}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div className="address-input-group">
-              <label htmlFor="adres">
-                Адрес<span className="req">*</span>
-              </label>
-              <input
-                type="text"
-                id="adres"
-                name="adres"
-                value={formData.adres}
-                onChange={handleChange}
-                className="long-input"
-                required
-              />
-            </div>
-
-            <div className="address-input-group">
-              <label htmlFor="metro">Станция метро, МЦД</label>
-              <input
-                type="text"
-                id="metro"
-                name="metro"
-                value={formData.metro}
-                onChange={handleChange}
-                required
-              />
-            </div>
-          </div>
-
-          <div className="exp-input-row">
-            <div className="exp-input-group">
-              <label htmlFor="experience">
-                Опыт<span className="req">*</span>
-              </label>
-              <input
-                type="text"
-                id="experience"
-                name="experience"
-                value={formData.experience}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="exp-input-group">
-              <label htmlFor="workSchedule">
-                График работы<span className="req">*</span>
-              </label>
-              <input
-                type="text"
-                id="workSchedule"
-                name="workSchedule"
-                value={formData.workSchedule}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="exp-input-group">
-              <label>
-                Тип занятости<span className="req">*</span>
-              </label>
-              <div className="type-radio-group">
-                <label>
-                  <input
-                    type="radio"
-                    name="employmentType"
-                    value="Полная занятость"
-                    checked={formData.employmentType === "Полная занятость"}
-                    onChange={handleChange}
-                    required
+              <div className="address-inputs-row">
+                <div className="address-input-group">
+                  <label htmlFor="region">
+                    Регион<span className="req">*</span>
+                  </label>
+                  <Field
+                    type="text"
+                    id="region"
+                    name="region"
+                    className={`custom-input ${
+                      errors.region && touched.region ? "error" : ""
+                    }`}
                   />
-                  Полная занятость
-                </label>
-                <label>
-                  <input
-                    type="radio"
-                    name="employmentType"
-                    value="Частичная занятость"
-                    checked={formData.employmentType === "Частичная занятость"}
-                    onChange={handleChange}
-                    required
+
+                  <ErrorMessage
+                    name="region"
+                    component="div"
+                    className="error"
                   />
-                  Частичная занятость
-                </label>
-                <label>
-                  <input
-                    type="radio"
-                    name="employmentType"
-                    value="Стажировка"
-                    checked={formData.employmentType === "Стажировка"}
-                    onChange={handleChange}
-                    required
+                </div>
+
+                <div className="address-input-group">
+                  <label htmlFor="address">
+                    Адрес<span className="req">*</span>
+                  </label>
+                  <Field
+                    type="text"
+                    id="address"
+                    name="address"
+                    className={`long-input custom-input ${
+                      errors.address && touched.address ? "error" : ""
+                    }`}
                   />
-                  Стажировка
-                </label>
+                  <ErrorMessage
+                    name="address"
+                    component="div"
+                    className="error"
+                  />
+                </div>
+                <div className="address-input-group">
+                  <label htmlFor="metro">Станция метро, МЦД</label>
+                  <Field type="text" id="metro" name="metro" />
+                  <ErrorMessage
+                    name="metro"
+                    component="div"
+                    className="error"
+                  />
+                </div>
+              </div>
+              <div className="address-inputs-row">
+                <div className="experience-group">
+                  <label htmlFor="experience">
+                    Опыт работы<span className="req">*</span>
+                  </label>
+                  <Field
+                    type="text"
+                    id="experience"
+                    name="experience"
+                    className={`custom-input ${
+                      errors.experience && touched.experience ? "error" : ""
+                    }`}
+                  />
+                  <ErrorMessage
+                    name="experience"
+                    component="div"
+                    className="error"
+                  />
+                </div>
+
+                <div className="schedule-group">
+                  <label htmlFor="workSchedule">
+                    График работы<span className="req">*</span>
+                  </label>
+                  <div className="select-wrapper">
+                    <Field
+                      as="select"
+                      id="workSchedule"
+                      name="workSchedule"
+                      className={`custom-select ${
+                        errors.workSchedule && touched.workSchedule
+                          ? "error"
+                          : ""
+                      }`}
+                      onFocus={handleToggle}
+                      onBlur={handleBlur}
+                      onChange={(e) => handleSelectChange(e, setFieldValue)}
+                    >
+                      <option value="">Выберите</option>
+                      <option value="fullTime">Полный день</option>
+                      <option value="partTime">Сменный 5/2</option>
+                      <option value="remote">Сменный 2/2</option>
+                    </Field>
+
+                    <img
+                      src={arrowIcon}
+                      alt="Стрелка"
+                      className="select-icon"
+                    />
+                  </div>
+
+                  <ErrorMessage
+                    name="workSchedule"
+                    component="div"
+                    className="error"
+                  />
+                </div>
+
+                <div className="employment-type-options">
+                  <label>
+                    Тип занятости<span className="req">*</span>
+                  </label>
+                  <div className="type-radio-group">
+                    <Field
+                      type="radio"
+                      id="fullTime"
+                      name="employmentType"
+                      value="Полная занятость"
+                    />
+                    <label htmlFor="fullTime">Полная занятость</label>
+
+                    <Field
+                      type="radio"
+                      id="partTime"
+                      name="employmentType"
+                      value="Частичная занятость"
+                    />
+                    <label htmlFor="partTime">Частичная занятость</label>
+
+                    <Field
+                      type="radio"
+                      id="project"
+                      name="employmentType"
+                      value="Проектная работа"
+                    />
+                    <label htmlFor="project">Стажировка</label>
+
+                    <ErrorMessage
+                      name="employmentType"
+                      component="div"
+                      className="error"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </form>
-      </div>
-
-      <div className="form-actions">
-        <button type="submit" onClick={handleSubmit}>
-          Отправить
-        </button>
-        <button type="button" onClick={handleReset}>
-          Сбросить
-        </button>
-      </div>
+            <div className="form-actions">
+              <button type="submit">Отправить</button>
+              <button type="button" onClick={() => resetForm()}>
+                Сбросить
+              </button>
+            </div>
+          </Form>
+        )}
+      </Formik>
     </div>
   );
 };

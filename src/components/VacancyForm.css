@@ -16,15 +16,22 @@ input[type="text"],
 input[type="number"],
 input[type="date"] {
   width: 275px;
+  border-width: 1px;
 }
 
 .salary-range input {
   width: 100px;
+  margin-top: 5px;
 }
 
 input[type="text"].long-input,
 input[type="date"].long-input {
   width: 420px;
+}
+.zag1 {
+  font-family: "Inter";
+  color: #4c73e3;
+  font-size: 36px;
 }
 
 .req {
@@ -32,6 +39,7 @@ input[type="date"].long-input {
 }
 
 .vacancy-form {
+  overflow: hidden;
   padding-left: 150px;
   padding-right: 150px;
 }
@@ -41,7 +49,7 @@ input[type="date"].long-input {
   background-color: white;
   padding: 20px;
 
-  border-radius: 8px;
+  border-radius: 16px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -50,6 +58,12 @@ input[type="date"].long-input {
   display: flex;
   align-items: row;
   gap: 40px;
+  flex-wrap: wrap;
+}
+.company-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .date-row {
@@ -57,6 +71,7 @@ input[type="date"].long-input {
   display: flex;
   align-items: row;
   gap: 40px;
+  flex-wrap: wrap;
 }
 
 .radio-group-sex {
@@ -70,11 +85,11 @@ input[type="date"].long-input {
   margin-bottom: 20px;
   display: flex;
   gap: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 3px;
 }
 
 .salary-range {
-  margin-bottom: 20px;
+  margin-bottom: 3px;
   display: flex;
   gap: 10px;
 }
@@ -86,6 +101,7 @@ input[type="date"].long-input {
   margin-bottom: 20px;
   display: flex;
   gap: 40px;
+  flex-wrap: wrap;
 }
 
 .address-input-group {
@@ -110,6 +126,12 @@ input[type="date"].long-input {
   flex-direction: column;
   gap: 5px;
 }
+
+.experience-group,
+.schedule-group {
+  display: flex;
+  flex-direction: column;
+}
 .type-iput-colum {
   margin-bottom: 10px;
   display: flex;
@@ -122,13 +144,139 @@ input[type="date"].long-input {
   gap: 5px;
 }
 
+/* Стили радио*/
+
+.radio-group-sex input[type="radio"] {
+  display: none;
+}
+
+.radio-group-sex label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  user-select: none;
+}
+
+.radio-group-sex label::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  background-image: url("./icons/Radiobutton0.png");
+  background-size: 20px 20px;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: background-image 0.2s ease;
+}
+
+.radio-group-sex label:hover::before {
+  background-image: url("./icons/RadiobuttonHover.png");
+}
+.radio-group {
+  gap: 10px;
+}
+
+.radio-group-sex input[type="radio"]:checked + label::before {
+  background-image: url("./icons/Radiobutton.png");
+}
+
+.salary-options input[type="radio"] {
+  display: none;
+}
+
+.salary-options label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  user-select: none;
+}
+
+.salary-options label::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  background-image: url("./icons/Radiobutton0.png");
+  background-size: 20px 20px;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: background-image 0.2s ease;
+}
+
+.salary-options input[type="radio"]:checked + label::before {
+  background-image: url("./icons/Radiobutton.png");
+}
+
+.salary-options label:hover::before {
+  background-image: url("./icons/RadiobuttonHover.png");
+}
+
+.type-radio-group input[type="radio"] {
+  display: none;
+}
+
+.type-radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  user-select: none;
+}
+
+.type-radio-group label::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  background-image: url("./icons/Radiobutton0.png");
+  background-size: 20px 20px;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: background-image 0.2s ease;
+}
+
+.type-radio-group label:hover::before {
+  background-image: url("./icons/RadiobuttonHover.png");
+}
+
+/* Если radio выбрано */
+.type-radio-group input[type="radio"]:checked + label::before {
+  background-image: url("./icons/Radiobutton.png");
+}
+
+.date-input-wrapper {
+  position: relative;
+}
+
+.calendar-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  width: 22px;
+  height: 21px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none; /* Отключаем стандартный календарик */
+}
+
 /* Стили для кнопок */
 
 .form-actions button {
   width: 250px;
   height: 50px;
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #4c73e3;
   color: white;
   border: none;
   border-radius: 16px;
@@ -143,9 +291,99 @@ input[type="date"].long-input {
 }
 .form-actions button[type="button"] {
   background-color: transparent;
-  color: #007bff;
-  border: 1px solid #007bff;
+  color: #4c73e3;
+  border: 1px solid #4c73e3;
 }
 .form-actions button:hover {
   opacity: 0.7;
+}
+
+/* Стили для select */
+
+.select-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 275px;
+}
+
+/* Иконка */
+.select-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  width: 16px;
+  height: 16px;
+  transform: translateY(-50%) rotate(0deg);
+  transition: transform 0.3s ease;
+  pointer-events: none;
+}
+.custom-select:focus .select-icon {
+  transform: translateY(-50%) rotate(180deg);
+}
+.custom-select.open .select-icon {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+select {
+  width: 297px !important;
+  height: 38px;
+  padding: 8px;
+  border-radius: 16px;
+  border: 1px solid #dee4f0;
+  color: #4f4f55;
+  background-color: #fff;
+}
+
+input:focus,
+select:focus {
+  border-color: #4c73e3;
+  outline: none;
+  border-width: 1px;
+}
+
+.select-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.select-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Стиль для select */
+.custom-select {
+  padding-right: 30px;
+  appearance: none;
+  border: 1px solid #dee4f0;
+  border-radius: 16px;
+  font-size: 14px;
+  height: 40px;
+  width: 100%;
+  padding-left: 10px;
+  font-family: "Inter", sans-serif;
+  font-weight: 300;
+}
+
+/* Модификация для элементов в случае ошибок */
+.error {
+  color: #bf0003;
+  font-size: 12px;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  display: block;
+  margin-top: 1px;
+  min-height: 16px;
+}
+
+input.error,
+select.error {
+  border-color: #bf0003 !important; /* Красная граница */
+  border-width: 1px;
 }

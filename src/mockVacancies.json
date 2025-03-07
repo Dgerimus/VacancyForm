@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "date": "2025-03-01",
+    "title": "Frontend Developer",
+    "region": "Москва",
+    "address": "ул. Ленина, 12",
+    "salaryFrom": 80000,
+    "experience": "1-3 года",
+    "metro": "Таганская"
+  },
+  {
+    "id": 2,
+    "date": "2025-03-05",
+    "title": "Backend Developer",
+    "region": "Санкт-Петербург",
+    "address": "Невский пр., 45",
+    "salaryFrom": 100000,
+    "experience": "3-5 лет",
+    "metro": "Невский проспект"
+  }
+]

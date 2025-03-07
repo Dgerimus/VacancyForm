@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "./VacancyList.css";
 import Edit from "./icons/Edit.png";
+import Cross from "./icons/Cross.png";
 import Subtract from "./icons/Subtract.png";
 import Vector from "./icons/Vector.png";
 
-const VacancyList = ({ vacancies }) => {
+const VacancyList = ({ vacancies, onEdit, onDelete }) => {
   return (
     <div className="fon">
       <h2 className="zag">Заявки на размещение вакансий</h2>
@@ -16,25 +17,38 @@ const VacancyList = ({ vacancies }) => {
             <div key={vacancy.id} className="vacancy-card">
               <span className="vacancy-head">
                 <span className="vacancy-date">
-                  Дата публикации: {vacancy.date}
+                  Дата публикации: {vacancy.operationDate}
                 </span>
-                <button className="edit-button">
-                  <img src={Edit} alt="" className="edit-button-icon" />
-                </button>
+                <span>
+                  <button
+                    className="edit-button"
+                    onClick={() => onEdit(vacancy)}
+                  >
+                    <img src={Edit} alt="Edit" className="edit-button-icon" />
+                  </button>
+                  <button
+                    className="edit-button"
+                    onClick={() => onDelete(vacancy.id)}
+                  >
+                    <img src={Cross} alt="Cross" className="edit-button-icon" />
+                  </button>
+                </span>
               </span>
               <div>
                 <h3 className="vacancy-title">{vacancy.title}</h3>
               </div>
               <div className="vacancy-footer">
-                <>
-                  <p className="vacancy-address">
-                    <img src={Subtract} alt="" className="subtract-icon" />{" "}
-                    {vacancy.address}
-                  </p>
-                </>
+                <p className="vacancy-address">
+                  <img
+                    src={Subtract}
+                    alt="Subtract"
+                    className="subtract-icon"
+                  />{" "}
+                  {vacancy.region} {vacancy.address}
+                </p>
                 <span className="vacancy-footer-right">
                   <span className="vacancy-salary">
-                    от {vacancy.salary}{" "}
+                    от {vacancy.salaryFrom}{" "}
                     <span className="vacancy-salary-hand">на руки</span>
                   </span>
                   <span className="vacancy-experience">
@@ -44,7 +58,7 @@ const VacancyList = ({ vacancies }) => {
                     </span>
                   </span>
                   <span className="vacancy-metro">
-                    <img src={Vector} alt="" className="vector-icon" />{" "}
+                    <img src={Vector} alt="Metro" className="vector-icon" />{" "}
                     {vacancy.metro}
                   </span>
                 </span>
