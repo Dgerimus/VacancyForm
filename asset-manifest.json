@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/Dgerimus/VacancyForm.git/static/css/main.d2e63637.css",
-    "main.js": "/Dgerimus/VacancyForm.git/static/js/main.a83d2cff.js",
-    "static/js/453.dd0717d5.chunk.js": "/Dgerimus/VacancyForm.git/static/js/453.dd0717d5.chunk.js",
-    "static/media/Subtract.png": "/Dgerimus/VacancyForm.git/static/media/Subtract.5a04556253289fb80e55.png",
-    "static/media/Cross.png": "/Dgerimus/VacancyForm.git/static/media/Cross.12c8ab1835f10fc58533.png",
-    "index.html": "/Dgerimus/VacancyForm.git/index.html",
-    "main.d2e63637.css.map": "/Dgerimus/VacancyForm.git/static/css/main.d2e63637.css.map",
-    "main.a83d2cff.js.map": "/Dgerimus/VacancyForm.git/static/js/main.a83d2cff.js.map",
-    "453.dd0717d5.chunk.js.map": "/Dgerimus/VacancyForm.git/static/js/453.dd0717d5.chunk.js.map"
+    "main.css": "/VacancyForm/static/css/main.d2e63637.css",
+    "main.js": "/VacancyForm/static/js/main.2dd4dd26.js",
+    "static/js/453.dd0717d5.chunk.js": "/VacancyForm/static/js/453.dd0717d5.chunk.js",
+    "static/media/Subtract.png": "/VacancyForm/static/media/Subtract.5a04556253289fb80e55.png",
+    "static/media/Cross.png": "/VacancyForm/static/media/Cross.12c8ab1835f10fc58533.png",
+    "index.html": "/VacancyForm/index.html",
+    "main.d2e63637.css.map": "/VacancyForm/static/css/main.d2e63637.css.map",
+    "main.2dd4dd26.js.map": "/VacancyForm/static/js/main.2dd4dd26.js.map",
+    "453.dd0717d5.chunk.js.map": "/VacancyForm/static/js/453.dd0717d5.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d2e63637.css",
-    "static/js/main.a83d2cff.js"
+    "static/js/main.2dd4dd26.js"
   ]
 }
