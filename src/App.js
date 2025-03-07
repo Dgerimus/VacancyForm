@@ -31,19 +31,24 @@ const App = () => {
 
   const handleButtonClick = (buttonType) => {
     setActiveButton(buttonType);
+    setSelectedVacancy(null); // При создании новой вакансии сбрасываем выбранную
   };
 
   const handleSubmit = (newVacancy) => {
     setVacancies((prevVacancies) => [
       ...prevVacancies,
-      { ...newVacancy, id: Date.now() },
+      {
+        ...newVacancy,
+        id: Date.now(),
+        operationDate: new Date().toISOString().split("T")[0],
+      },
     ]);
-    setActiveButton("list"); // После добавления вакансии возвращаемся в список
+    setActiveButton("list");
   };
 
   const handleEdit = (vacancy) => {
     setSelectedVacancy(vacancy);
-    setActiveButton("form"); // Переходим в форму для редактирования
+    setActiveButton("form");
   };
 
   const handleDelete = (id) => {
@@ -61,7 +66,10 @@ const App = () => {
     setSelectedVacancy(null);
     setActiveButton("list");
   };
-
+  const handleCancel = () => {
+    setSelectedVacancy(null); // Отменяем редактирование
+    setActiveButton("list"); // Возвращаем в список
+  };
   return (
     <div>
       <Header onButtonClick={handleButtonClick} />
@@ -74,17 +82,9 @@ const App = () => {
           />
         ) : (
           <VacancyForm
-            onSubmit={handleSubmit}
-            onUpdate={handleUpdate}
-            initialValues={
-              selectedVacancy || {
-                title: "",
-                address: "",
-                salary: "",
-                experience: "",
-                metro: "",
-              }
-            }
+            onSubmit={selectedVacancy ? handleUpdate : handleSubmit}
+            onCancel={() => setActiveButton("list")}
+            vacancy={selectedVacancy}
           />
         )}
       </div>

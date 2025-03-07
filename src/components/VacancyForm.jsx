@@ -5,15 +5,16 @@ import "./VacancyForm.css";
 import Calendar from "./icons/Calendar.png";
 import Swich from "./icons/Swich.png";
 import SwichOpen from "./icons/SwichOpen.png";
+import { NumericFormat } from "react-number-format";
 
 // Валидация формы
 const validationSchema = Yup.object({
   title: Yup.string().required("Укажите наименование"),
   department: Yup.string().required("Укажите отдел"),
   operationDate: Yup.date().required("Выберите дату открытия"),
-  plannedDate: Yup.date().required("Выберите дату закрытия"),
+
   gender: Yup.string().required("Выберите пол"),
-  salaryFrom: Yup.number().required("Укажите уровень зарплаты").min(0),
+  salaryFrom: Yup.string().required("Укажите уровень зарплаты"),
   region: Yup.string().required("Выберите регион"),
   address: Yup.string().required(
     "Введите полный адрес. Например, Походный проезд, 3с1"
@@ -24,10 +25,10 @@ const validationSchema = Yup.object({
   netSalary: Yup.string().required("Укажите форму зарплаты "),
 });
 
-const VacancyForm = ({ onSubmit, vacancies }) => {
+const VacancyForm = ({ onSubmit, vacancy, onCancel }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [arrowIcon, setArrowIcon] = useState(Swich); // Изначально стрелка закрыта
-
+  const isEdit = Boolean(vacancy);
   const handleToggle = () => {
     setIsOpen((prevState) => !prevState);
     setArrowIcon((prevState) => (prevState === Swich ? SwichOpen : Swich)); // Меняем иконку стрелки
@@ -45,40 +46,42 @@ const VacancyForm = ({ onSubmit, vacancies }) => {
     }
     setIsOpen(false); // Закрываем список
   };
+  const handleCancelClick = () => {
+    onCancel();
+  };
 
   return (
     <div className="vacancy-form">
       <h2 className="zag1">
-        Форма размещения <u>заявки</u>
+        {isEdit ? "Форма редактирование " : "Форма размещения"} <u>заявки</u>
       </h2>
 
       <Formik
         initialValues={{
-          title: "",
-          department: "",
-          operationDate: "",
-          plannedDate: "",
-          gender: "",
-          region: "",
-          address: "",
-          salaryFrom: "",
-          salaryTo: "",
-          salary: "",
-          experience: "",
-          metro: "",
-          workSchedule: "",
-          employmentType: "",
-          netSalary: "",
+          title: vacancy?.title || "",
+          department: vacancy?.department || "",
+          operationDate: vacancy?.operationDate || "",
+          plannedDate: vacancy?.plannedDate || "",
+          gender: vacancy?.gender || "",
+          region: vacancy?.region || "",
+          address: vacancy?.address || "",
+          salaryFrom: vacancy?.salaryFrom || "",
+          salaryTo: vacancy?.salaryTo || "",
+          experience: vacancy?.experience || "",
+          metro: vacancy?.metro || "",
+          workSchedule: vacancy?.workSchedule || "",
+          employmentType: vacancy?.employmentType || "",
+          netSalary: vacancy?.netSalary || "",
         }}
+        enableReinitialize={true}
         validationSchema={validationSchema}
         onSubmit={(values, { resetForm }) => {
           const newVacancy = {
             ...values,
-            id: new Date().toISOString(),
+            id: isEdit ? vacancy.id : new Date().toISOString(),
           };
 
           onSubmit(newVacancy);
-
           resetForm();
         }}
       >
@@ -239,23 +242,48 @@ const VacancyForm = ({ onSubmit, vacancies }) => {
                 />
               </div>
 
-              <div className="salary-range">
-                <Field
-                  type="number"
-                  name="salaryFrom"
-                  placeholder="от"
-                  className={`custom-date-input custom-input ${
-                    errors.salaryFrom && touched.salaryFrom ? "error" : ""
-                  }`}
-                />
-                <Field type="number" name="salaryTo" placeholder="до" />
-              </div>
               <div>
-                <ErrorMessage
-                  name="salaryFrom"
-                  component="div"
-                  className="error "
-                />
+                <div className="salary-range">
+                  <Field
+                    name="salaryFrom"
+                    render={({ field, form }) => (
+                      <NumericFormat
+                        {...field}
+                        placeholder="от"
+                        thousandSeparator={true}
+                        allowNegative={false}
+                        isNumericString
+                        customInput="input"
+                        className={`custom-date-input custom-input ${
+                          form.errors.salaryFrom && form.touched.salaryFrom
+                            ? "error"
+                            : ""
+                        }`}
+                      />
+                    )}
+                  />
+                  <Field
+                    name="salaryTo"
+                    render={({ field, form }) => (
+                      <NumericFormat
+                        {...field}
+                        placeholder="до"
+                        thousandSeparator={true}
+                        allowNegative={false}
+                        isNumericString
+                        customInput="input"
+                        className="custom-date-input custom-input"
+                      />
+                    )}
+                  />
+                </div>
+                <div>
+                  <ErrorMessage
+                    name="salaryFrom"
+                    component="div"
+                    className="error"
+                  />
+                </div>
               </div>
 
               <div className="address-inputs-row">
@@ -404,11 +432,28 @@ const VacancyForm = ({ onSubmit, vacancies }) => {
               </div>
             </div>
             <div className="form-actions">
-              <button type="submit">Отправить</button>
-              <button type="button" onClick={() => resetForm()}>
-                Сбросить
+              <button type="submit">
+                {isEdit ? "Сохранить" : "Отправить"}
+              </button>
+              <button type="button" onClick={handleCancelClick}>
+                Отмена
               </button>
             </div>
+
+            {/* <div className="form-actions">
+              <button type="submit">
+                {isEdit ? "Сохранить" : "Отправить"}
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  resetForm();
+                  onSubmit(null);
+                }}
+              >
+                {isEdit ? "Отмена" : "Сбросить"}
+              </button>
+            </div> */}
           </Form>
         )}
       </Formik>

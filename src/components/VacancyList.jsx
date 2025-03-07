@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./VacancyList.css";
 import Edit from "./icons/Edit.png";
 import Cross from "./icons/Cross.png";
@@ -22,7 +22,7 @@ const VacancyList = ({ vacancies, onEdit, onDelete }) => {
                 <span>
                   <button
                     className="edit-button"
-                    onClick={() => onEdit(vacancy)}
+                    onClick={() => onEdit({ ...vacancy, isEditing: true })} // Добавляем isEditing
                   >
                     <img src={Edit} alt="Edit" className="edit-button-icon" />
                   </button>
@@ -44,7 +44,8 @@ const VacancyList = ({ vacancies, onEdit, onDelete }) => {
                     alt="Subtract"
                     className="subtract-icon"
                   />{" "}
-                  {vacancy.region} {vacancy.address}
+                  {vacancy.region ? `${vacancy.region}, ` : ""}
+                  {vacancy.address}
                 </p>
                 <span className="vacancy-footer-right">
                   <span className="vacancy-salary">
