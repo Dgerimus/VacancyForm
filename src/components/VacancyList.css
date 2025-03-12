@@ -17,12 +17,12 @@
   padding-left: 150px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 28px;
 }
 
 .vacancy-card {
+  max-width: 1300px;
   background: white;
-  padding: 15px;
   border-radius: 16px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   display: flex;
@@ -31,6 +31,9 @@
 }
 
 .vacancy-head {
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-top: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -42,11 +45,11 @@
 }
 .edit-button {
   align-self: flex-start;
-  margin-top: 10px;
+
   background: #ffffff;
   color: white;
   border: none;
-  padding: 8px 12px;
+
   border-radius: 5px;
   cursor: pointer;
 }
@@ -56,13 +59,17 @@
   height: 24px;
 }
 .vacancy-title {
+  padding-left: 20px;
   font-family: "Inter";
   color: #4f4f55;
-  font-size: 24px;
+  font-size: 25px;
   font-weight: 700;
 }
 
 .vacancy-footer {
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -118,9 +125,13 @@
   vertical-align: middle;
 }
 .vacancy-metro {
+  display: flex;
+  align-items: center;
+  gap: 5px;
   color: #4f4f55;
   font-family: "PF Din Text Cond Pro";
   font-weight: 400;
-  font-size: 14px;
+  font-size: 16px;
   opacity: 80%;
+  vertical-align: middle;
 }
