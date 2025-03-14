@@ -1,17 +1,19 @@
 {
   "files": {
-    "main.css": "/VacancyForm/static/css/main.235fe24e.css",
-    "main.js": "/VacancyForm/static/js/main.62981d90.js",
+    "main.css": "/VacancyForm/static/css/main.62afca80.css",
+    "main.js": "/VacancyForm/static/js/main.d65963fc.js",
     "static/js/453.dd0717d5.chunk.js": "/VacancyForm/static/js/453.dd0717d5.chunk.js",
+    "static/media/PFDinTextCondPro-Regular.ttf": "/VacancyForm/static/media/PFDinTextCondPro-Regular.526c3e08dcf418ed9d0f.ttf",
+    "static/media/PFDinTextCondPro-Bold.ttf": "/VacancyForm/static/media/PFDinTextCondPro-Bold.64941ec4fe94b9d5c456.ttf",
     "static/media/Subtract.png": "/VacancyForm/static/media/Subtract.5a04556253289fb80e55.png",
     "static/media/Cross.png": "/VacancyForm/static/media/Cross.12c8ab1835f10fc58533.png",
     "index.html": "/VacancyForm/index.html",
-    "main.235fe24e.css.map": "/VacancyForm/static/css/main.235fe24e.css.map",
-    "main.62981d90.js.map": "/VacancyForm/static/js/main.62981d90.js.map",
+    "main.62afca80.css.map": "/VacancyForm/static/css/main.62afca80.css.map",
+    "main.d65963fc.js.map": "/VacancyForm/static/js/main.d65963fc.js.map",
     "453.dd0717d5.chunk.js.map": "/VacancyForm/static/js/453.dd0717d5.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.235fe24e.css",
-    "static/js/main.62981d90.js"
+    "static/css/main.62afca80.css",
+    "static/js/main.d65963fc.js"
   ]
 }
