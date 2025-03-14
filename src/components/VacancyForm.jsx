@@ -53,7 +53,7 @@ const VacancyForm = ({ onSubmit, vacancy, onCancel }) => {
   return (
     <div className="vacancy-form">
       <h2 className="zag1">
-        {isEdit ? "Форма редактирование " : "Форма размещения "} <u>заявки</u>
+        {isEdit ? "Форма редактирования " : "Форма размещения "} <u>заявки</u>
       </h2>
 
       <Formik
