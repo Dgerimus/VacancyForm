@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Header.css";
 import Ellipse from "./icons/Ellipse.png";
 
-const Header = ({ onButtonClick }) => {
-  const [activeButton, setActiveButton] = useState("list");
-
+const Header = ({ onButtonClick, activeButton }) => {
   const handleButtonClick = (buttonType) => {
-    setActiveButton(buttonType);
     onButtonClick(buttonType);
+    // onButtonClick(buttonType);
   };
 
   return (
