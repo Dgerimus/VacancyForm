@@ -53,7 +53,7 @@ const VacancyForm = ({ onSubmit, vacancy, onCancel }) => {
   return (
     <div className="vacancy-form">
       <h2 className="zag1">
-        {isEdit ? "Форма редактирование " : "Форма размещения "} <u>заявки</u>
+        {isEdit ? "Форма редактирование " : "Форма размещения"} <u>заявки</u>
       </h2>
 
       <Formik
@@ -98,11 +98,7 @@ const VacancyForm = ({ onSubmit, vacancy, onCancel }) => {
                     id="title"
                     name="title"
                     className={`custom-input ${
-                      errors.title && touched.title
-                        ? "error"
-                        : touched.title
-                        ? "success"
-                        : ""
+                      errors.title && touched.title ? "error" : ""
                     }`}
                   />
                   <ErrorMessage
@@ -121,11 +117,7 @@ const VacancyForm = ({ onSubmit, vacancy, onCancel }) => {
                     id="department"
                     name="department"
                     className={`custom-input ${
-                      errors.department && touched.department
-                        ? "error"
-                        : touched.department
-                        ? "success"
-                        : ""
+                      errors.department && touched.department ? "error" : ""
                     }`}
                   />
                   <ErrorMessage
@@ -146,11 +138,9 @@ const VacancyForm = ({ onSubmit, vacancy, onCancel }) => {
                       type="date"
                       id="operationDate"
                       name="operationDate"
-                      className={`custom-input ${
+                      className={`custom-date-input custom-input ${
                         errors.operationDate && touched.operationDate
                           ? "error"
-                          : touched.operationDate
-                          ? "success"
                           : ""
                       }`}
                     />
@@ -267,8 +257,6 @@ const VacancyForm = ({ onSubmit, vacancy, onCancel }) => {
                         className={`custom-date-input custom-input ${
                           form.errors.salaryFrom && form.touched.salaryFrom
                             ? "error"
-                            : touched.salaryFrom
-                            ? "success"
                             : ""
                         }`}
                       />
@@ -308,11 +296,7 @@ const VacancyForm = ({ onSubmit, vacancy, onCancel }) => {
                     id="region"
                     name="region"
                     className={`custom-input ${
-                      errors.region && touched.region
-                        ? "error"
-                        : touched.region
-                        ? "success"
-                        : ""
+                      errors.region && touched.region ? "error" : ""
                     }`}
                   />
 
@@ -332,11 +316,7 @@ const VacancyForm = ({ onSubmit, vacancy, onCancel }) => {
                     id="address"
                     name="address"
                     className={`long-input custom-input ${
-                      errors.address && touched.address
-                        ? "error"
-                        : touched.address
-                        ? "success"
-                        : ""
+                      errors.address && touched.address ? "error" : ""
                     }`}
                   />
                   <ErrorMessage
@@ -365,11 +345,7 @@ const VacancyForm = ({ onSubmit, vacancy, onCancel }) => {
                     id="experience"
                     name="experience"
                     className={`custom-input ${
-                      errors.experience && touched.experience
-                        ? "error"
-                        : touched.experience
-                        ? "success"
-                        : ""
+                      errors.experience && touched.experience ? "error" : ""
                     }`}
                   />
                   <ErrorMessage
@@ -397,9 +373,7 @@ const VacancyForm = ({ onSubmit, vacancy, onCancel }) => {
                       onBlur={handleBlur}
                       onChange={(e) => handleSelectChange(e, setFieldValue)}
                     >
-                      <option value="" className="placeHS">
-                        Выберите
-                      </option>
+                      <option value="">Выберите</option>
                       <option value="fullTime">Полный день</option>
                       <option value="partTime">Сменный 5/2</option>
                       <option value="remote">Сменный 2/2</option>
@@ -461,12 +435,8 @@ const VacancyForm = ({ onSubmit, vacancy, onCancel }) => {
               <button type="submit">
                 {isEdit ? "Сохранить" : "Отправить"}
               </button>
-
-              <button
-                type="button"
-                onClick={isEdit ? handleCancelClick : resetForm}
-              >
-                {isEdit ? "Отмена" : "Сбросить"}
+              <button type="button" onClick={handleCancelClick}>
+                Отмена
               </button>
             </div>
           </Form>

@@ -11,12 +11,18 @@ input,
 h2 {
   font-family: "Inter", sans-serif;
   font-weight: 300;
+  font-size: 14px;
 }
 input[type="text"],
 input[type="number"],
 input[type="date"] {
   width: 275px;
   border-width: 1px;
+}
+input::placeholder,
+textarea::placeholder {
+  font-size: 16px;
+  color: #dcdcdc;
 }
 
 .salary-range input {
@@ -63,7 +69,7 @@ input[type="date"].long-input {
 .company-group {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 7px;
 }
 
 .date-row {
@@ -75,6 +81,7 @@ input[type="date"].long-input {
 }
 
 .radio-group-sex {
+  padding-top: 7px;
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
@@ -82,14 +89,14 @@ input[type="date"].long-input {
 }
 
 .salary-options {
-  margin-bottom: 20px;
+  padding-top: 7px;
+
   display: flex;
   gap: 10px;
-  margin-bottom: 3px;
 }
 
 .salary-range {
-  margin-bottom: 3px;
+  padding-top: 7px;
   display: flex;
   gap: 10px;
 }
@@ -98,7 +105,7 @@ input[type="date"].long-input {
 }
 
 .address-inputs-row {
-  margin-bottom: 20px;
+  padding-top: 7px;
   display: flex;
   gap: 40px;
   flex-wrap: wrap;
@@ -109,8 +116,11 @@ input[type="date"].long-input {
 
 .address-input-group label {
   display: flex;
+  padding-bottom: 7px;
 }
-
+.schedule-group label {
+  padding-bottom: 7px;
+}
 .address-input-group input {
 }
 
@@ -131,6 +141,12 @@ input[type="date"].long-input {
 .schedule-group {
   display: flex;
   flex-direction: column;
+}
+.type-main {
+  padding-bottom: 7px !important;
+}
+.experience-group label {
+  padding-bottom: 7px;
 }
 .type-iput-colum {
   margin-bottom: 10px;
@@ -254,6 +270,7 @@ input[type="date"].long-input {
 
 .date-input-wrapper {
   position: relative;
+  padding-top: 7px;
 }
 
 .calendar-icon {
@@ -362,7 +379,7 @@ select:focus {
   appearance: none;
   border: 1px solid #dee4f0;
   border-radius: 16px;
-  font-size: 14px;
+  font-size: 16px;
   height: 40px;
   width: 100%;
   padding-left: 10px;
@@ -386,4 +403,22 @@ input.error,
 select.error {
   border-color: #bf0003 !important; /* Красная граница */
   border-width: 1px;
+}
+
+input[type="date"]::placeholder {
+  font-size: 16px;
+  color: #dcdcdc !important;
+}
+
+input[type="date"]::-webkit-datetime-edit-text,
+input[type="date"]::-webkit-datetime-edit-month-field,
+input[type="date"]::-webkit-datetime-edit-day-field,
+input[type="date"]::-webkit-datetime-edit-year-field {
+  font-size: 16px;
+  color: #dcdcdc;
+}
+
+/* Верно заполненная форма */
+.custom-input.success {
+  box-shadow: 0 0 3px 1px rgb(53, 165, 0, 0.7);
 }
