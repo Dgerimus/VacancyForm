@@ -200,7 +200,7 @@ const VacancyForm = ({ onSubmit, vacancy, onCancel }) => {
                 </div>
               </div>
 
-              <div>
+              <div className="pol-part">
                 <label>
                   Пол<span className="req">*</span>
                 </label>
@@ -223,7 +223,7 @@ const VacancyForm = ({ onSubmit, vacancy, onCancel }) => {
                 </div>
               </div>
 
-              <div>
+              <div className="zarp-part">
                 <label>
                   Зарплата<span className="req">*</span>
                 </label>
@@ -254,47 +254,53 @@ const VacancyForm = ({ onSubmit, vacancy, onCancel }) => {
 
               <div>
                 <div className="salary-range">
-                  <Field
-                    name="salaryFrom"
-                    render={({ field, form }) => (
-                      <NumericFormat
-                        {...field}
-                        placeholder="от"
-                        thousandSeparator={true}
-                        allowNegative={false}
-                        isNumericString
-                        customInput="input"
-                        className={`custom-date-input custom-input ${
-                          form.errors.salaryFrom && form.touched.salaryFrom
-                            ? "error"
-                            : touched.salaryFrom
-                            ? "success"
-                            : ""
-                        }`}
-                      />
-                    )}
-                  />
-                  <Field
-                    name="salaryTo"
-                    render={({ field, form }) => (
-                      <NumericFormat
-                        {...field}
-                        placeholder="до"
-                        thousandSeparator={true}
-                        allowNegative={false}
-                        isNumericString
-                        customInput="input"
-                        className="custom-date-input custom-input"
-                      />
-                    )}
-                  />
-                </div>
-                <div>
-                  <ErrorMessage
-                    name="salaryFrom"
-                    component="div"
-                    className="error"
-                  />
+                  <div className="salary-renge-one">
+                    <div className="otdo">От</div>
+                    <Field
+                      name="salaryFrom"
+                      render={({ field, form }) => (
+                        <NumericFormat
+                          {...field}
+                          placeholder=""
+                          thousandSeparator={true}
+                          allowNegative={false}
+                          isNumericString
+                          customInput="input"
+                          className={`custom-date-input custom-input ${
+                            form.errors.salaryFrom && form.touched.salaryFrom
+                              ? "error"
+                              : touched.salaryFrom
+                              ? "success"
+                              : ""
+                          }`}
+                        />
+                      )}
+                    />
+                  </div>
+                  <div className="salary-renge-one">
+                    <div className="otdo">До</div>
+                    <Field
+                      name="salaryTo"
+                      render={({ field, form }) => (
+                        <NumericFormat
+                          {...field}
+                          placeholder=""
+                          thousandSeparator={true}
+                          allowNegative={false}
+                          isNumericString
+                          customInput="input"
+                          className="custom-date-input custom-input"
+                        />
+                      )}
+                    />
+                  </div>
+                  <div>
+                    <ErrorMessage
+                      name="salaryFrom"
+                      component="div"
+                      className="error"
+                    />
+                  </div>
                 </div>
               </div>
 
@@ -355,7 +361,7 @@ const VacancyForm = ({ onSubmit, vacancy, onCancel }) => {
                   />
                 </div>
               </div>
-              <div className="address-inputs-row">
+              <div className="exp-inputs-row">
                 <div className="experience-group">
                   <label htmlFor="experience">
                     Опыт работы<span className="req">*</span>

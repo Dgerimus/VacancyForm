@@ -281,7 +281,7 @@ const VacancyForm = ({ onSubmit, vacancy, onCancel }) => {
                   <ErrorMessage
                     name="salaryFrom"
                     component="div"
-                    className="error"
+                    className="error error+"
                   />
                 </div>
               </div>

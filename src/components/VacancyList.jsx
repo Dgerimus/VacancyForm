@@ -19,7 +19,7 @@ const VacancyList = ({ vacancies, onEdit, onDelete }) => {
                 <span className="vacancy-date">
                   Дата публикации: {vacancy.operationDate}
                 </span>
-                <span>
+                <div className="button-row">
                   <button
                     className="edit-button"
                     onClick={() => onEdit({ ...vacancy, isEditing: true })} // Добавляем isEditing
@@ -32,37 +32,38 @@ const VacancyList = ({ vacancies, onEdit, onDelete }) => {
                   >
                     <img src={Cross} alt="Cross" className="edit-button-icon" />
                   </button>
-                </span>
+                </div>
               </span>
-              <div>
+              <div className="title-column">
                 <h3 className="vacancy-title">{vacancy.title}</h3>
-              </div>
-              <div className="vacancy-footer">
-                <p className="vacancy-address">
-                  <img
-                    src={Subtract}
-                    alt="Subtract"
-                    className="subtract-icon"
-                  />{" "}
-                  {vacancy.region ? `${vacancy.region}, ` : ""}
-                  {vacancy.address}
-                </p>
-                <span className="vacancy-footer-right">
-                  <span className="vacancy-salary">
-                    от {vacancy.salaryFrom}{" "}
-                    <span className="vacancy-salary-hand">на руки</span>
-                  </span>
-                  <span className="vacancy-experience">
-                    Требуемый опыт:
-                    <span className="experience-gate">
-                      {vacancy.experience}
+
+                <div className="vacancy-footer">
+                  <p className="vacancy-address">
+                    <img
+                      src={Subtract}
+                      alt="Subtract"
+                      className="subtract-icon"
+                    />{" "}
+                    {vacancy.region ? `${vacancy.region}, ` : ""}
+                    {vacancy.address}
+                  </p>
+                  <span className="vacancy-footer-right">
+                    <span className="vacancy-salary">
+                      от {vacancy.salaryFrom}{" "}
+                      <span className="vacancy-salary-hand">на руки</span>
+                    </span>
+                    <span className="vacancy-experience">
+                      Требуемый опыт:{"  "}
+                      <span className="experience-gate">
+                        {vacancy.experience}
+                      </span>
+                    </span>
+                    <span className="vacancy-metro">
+                      <img src={Vector} alt="Metro" className="vector-icon" />{" "}
+                      {vacancy.metro}
                     </span>
                   </span>
-                  <span className="vacancy-metro">
-                    <img src={Vector} alt="Metro" className="vector-icon" />{" "}
-                    {vacancy.metro}
-                  </span>
-                </span>
+                </div>
               </div>
             </div>
           ))
