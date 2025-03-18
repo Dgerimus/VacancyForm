@@ -34,14 +34,15 @@
 
 .vacancy-head {
   display: flex;
-
   justify-content: space-between;
   align-items: center;
 }
 .vacancy-date {
   font-family: "Inter";
+  font-weight: 400;
   font-size: 14px;
   opacity: 60%;
+  color: #4f4f55;
 }
 
 .button-row {
@@ -88,6 +89,7 @@
   height: 20px;
   font-family: "PFDinTextCondPro";
   font-weight: 400;
+  opacity: 80%;
 
   font-size: 16px;
 }

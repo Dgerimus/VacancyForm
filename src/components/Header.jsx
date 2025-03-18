@@ -17,13 +17,13 @@ const Header = ({ onButtonClick, activeButton }) => {
           className={`header-button ${activeButton === "list" ? "active" : ""}`}
           onClick={() => handleButtonClick("list")}
         >
-          <span>Список вакансий</span>
+          <span>Все заявки</span>
         </button>
         <button
           className={`header-button ${activeButton === "form" ? "active" : ""}`}
           onClick={() => handleButtonClick("form")}
         >
-          <span>Добавить вакансию</span>
+          <span>Создание заявки</span>
         </button>
       </div>
     </header>

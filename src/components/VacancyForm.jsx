@@ -12,9 +12,34 @@ const validationSchema = Yup.object({
   title: Yup.string().required("Укажите наименование"),
   department: Yup.string().required("Укажите отдел"),
   operationDate: Yup.date().required("Выберите дату открытия"),
-
   gender: Yup.string().required("Выберите пол"),
-  salaryFrom: Yup.string().required("Укажите уровень зарплаты"),
+
+  salaryFrom: Yup.number()
+    .typeError("Введите число")
+    .positive("Число должно быть положительным")
+    .required("Укажите уровень зарплаты"),
+  // .test(
+  //   "is-less-than-salaryTo",
+  //   "Значение 'От' должно быть меньше значения 'До'",
+  //   function (value) {
+  //     const { salaryTo } = this.parent;
+  //     return salaryTo === "" || value < salaryTo;
+  //   }
+  // ),
+
+  salaryTo: Yup.number()
+    .typeError("Введите число")
+    .positive("Число должно быть положительным")
+    .required("Укажите уровень зарплаты")
+    .test(
+      "is-more-than-salaryFrom",
+      "Значение 'До' должно быть больше значения 'От'",
+      function (value) {
+        const { salaryFrom } = this.parent;
+        return salaryFrom === "" || value > salaryFrom;
+      }
+    ),
+
   region: Yup.string().required("Выберите регион"),
   address: Yup.string().required(
     "Введите полный адрес. Например, Походный проезд, 3с1"
@@ -27,11 +52,11 @@ const validationSchema = Yup.object({
 
 const VacancyForm = ({ onSubmit, vacancy, onCancel }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [arrowIcon, setArrowIcon] = useState(Swich); // Изначально стрелка закрыта
+  const [arrowIcon, setArrowIcon] = useState(Swich);
   const isEdit = Boolean(vacancy);
   const handleToggle = () => {
     setIsOpen((prevState) => !prevState);
-    setArrowIcon((prevState) => (prevState === Swich ? SwichOpen : Swich)); // Меняем иконку стрелки
+    setArrowIcon((prevState) => (prevState === Swich ? SwichOpen : Swich));
   };
 
   const handleSelectChange = (e, setFieldValue) => {
@@ -259,13 +284,9 @@ const VacancyForm = ({ onSubmit, vacancy, onCancel }) => {
                     <Field
                       name="salaryFrom"
                       render={({ field, form }) => (
-                        <NumericFormat
+                        <input
                           {...field}
                           placeholder=""
-                          thousandSeparator={true}
-                          allowNegative={false}
-                          isNumericString
-                          customInput="input"
                           className={`custom-date-input custom-input ${
                             form.errors.salaryFrom && form.touched.salaryFrom
                               ? "error"
@@ -276,30 +297,39 @@ const VacancyForm = ({ onSubmit, vacancy, onCancel }) => {
                         />
                       )}
                     />
+                    <div className="row-err-selary"></div>
                   </div>
                   <div className="salary-renge-one">
                     <div className="otdo">До</div>
                     <Field
                       name="salaryTo"
                       render={({ field, form }) => (
-                        <NumericFormat
+                        <input
                           {...field}
                           placeholder=""
-                          thousandSeparator={true}
-                          allowNegative={false}
-                          isNumericString
-                          customInput="input"
-                          className="custom-date-input custom-input"
+                          className={`custom-date-input custom-input ${
+                            form.errors.salaryTo && form.touched.salaryTo
+                              ? "error"
+                              : touched.salaryTo
+                              ? "success"
+                              : ""
+                          }`}
                         />
                       )}
                     />
-                  </div>
-                  <div>
-                    <ErrorMessage
-                      name="salaryFrom"
-                      component="div"
-                      className="error"
-                    />
+                    {(
+                      <ErrorMessage
+                        name="salaryFrom"
+                        component="div"
+                        className="error"
+                      />
+                    ) && (
+                      <ErrorMessage
+                        name="salaryTo"
+                        component="div"
+                        className="error"
+                      />
+                    )}
                   </div>
                 </div>
               </div>
@@ -464,7 +494,7 @@ const VacancyForm = ({ onSubmit, vacancy, onCancel }) => {
               </div>
             </div>
             <div className="form-actions">
-              <button type="submit">
+              <button type="submit" className="btn-all">
                 {isEdit ? "Сохранить" : "Отправить"}
               </button>
 

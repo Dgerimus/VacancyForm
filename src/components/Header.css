@@ -21,10 +21,11 @@
 
 /* Основные стили кнопки */
 .header-button {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Open Sans Hebrew", sans-serif;
   font-weight: 400;
   font-size: 18px;
   height: 71px;
+
   padding: 0 15px;
   border: none;
   background-color: #4c73e3;
