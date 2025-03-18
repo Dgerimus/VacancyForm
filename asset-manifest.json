@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/VacancyForm/static/css/main.5b750521.css",
-    "main.js": "/VacancyForm/static/js/main.d8d0904b.js",
+    "main.js": "/VacancyForm/static/js/main.ff0c8175.js",
     "static/js/453.dd0717d5.chunk.js": "/VacancyForm/static/js/453.dd0717d5.chunk.js",
     "static/media/PFDinTextCondPro-Regular.ttf": "/VacancyForm/static/media/PFDinTextCondPro-Regular.526c3e08dcf418ed9d0f.ttf",
     "static/media/PFDinTextCondPro-Bold.ttf": "/VacancyForm/static/media/PFDinTextCondPro-Bold.64941ec4fe94b9d5c456.ttf",
@@ -9,11 +9,11 @@
     "static/media/Cross.png": "/VacancyForm/static/media/Cross.12c8ab1835f10fc58533.png",
     "index.html": "/VacancyForm/index.html",
     "main.5b750521.css.map": "/VacancyForm/static/css/main.5b750521.css.map",
-    "main.d8d0904b.js.map": "/VacancyForm/static/js/main.d8d0904b.js.map",
+    "main.ff0c8175.js.map": "/VacancyForm/static/js/main.ff0c8175.js.map",
     "453.dd0717d5.chunk.js.map": "/VacancyForm/static/js/453.dd0717d5.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5b750521.css",
-    "static/js/main.d8d0904b.js"
+    "static/js/main.ff0c8175.js"
   ]
 }
