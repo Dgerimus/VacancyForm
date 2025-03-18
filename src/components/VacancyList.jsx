@@ -49,7 +49,10 @@ const VacancyList = ({ vacancies, onEdit, onDelete }) => {
                   </p>
                   <span className="vacancy-footer-right">
                     <span className="vacancy-salary">
-                      от {vacancy.salaryFrom}{" "}
+                      от{" "}
+                      {Number(vacancy.salaryFrom)
+                        ?.toLocaleString("ru-RU")
+                        .replace(/\s/g, ",")}{" "}
                       <span className="vacancy-salary-hand">на руки</span>
                     </span>
                     <span className="vacancy-experience">

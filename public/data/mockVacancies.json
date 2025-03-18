@@ -4,7 +4,7 @@
     "title": "Frontend Developer",
     "operationDate": "2025-03-03",
     "address": "Москва, ул. Ленина 1",
-    "salaryFrom": "100,000",
+    "salaryFrom": 100000,
     "experience": "от 1 до 3 лет",
     "metro": "Киевская"
   },
@@ -13,7 +13,7 @@
     "title": "Backend Developer",
     "operationDate": "2025-02-28",
     "address": "Санкт-Петербург, ул. Пушкина 10",
-    "salaryFrom": "120,000",
+    "salaryFrom": 120000,
     "experience": "более 3 лет",
     "metro": "Невский проспект"
   }
